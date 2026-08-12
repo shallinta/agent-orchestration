@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+
+# Local brainstorming and orchestration runtime state
+.superpowers/
+.omc/
