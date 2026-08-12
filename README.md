@@ -29,6 +29,7 @@
 
 ## 项目记录
 
+- [Dreaming 索引](docs/dreaming/README.md)：从核心问题到未来可能需求的阶段性思想成果。
 - [项目手记](CHANGELOG.md)：持续记录想法、方案、实现和方向变化。
 - [立项记录](docs/project-log/2026-08-12-inception.md)：保存项目起点、核心痛点和最初设想。
 - [架构与产品决策](docs/decisions/README.md)：记录经过讨论并确认的重要决定。
