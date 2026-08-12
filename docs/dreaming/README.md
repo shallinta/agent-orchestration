@@ -15,4 +15,6 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 
 ## 已形成的思想成果
 
+0. [用户最初构想原文](000-original-idea.md)——历史输入档案，不代表全文共识
 1. [人被迫填补 Agent 之间的协作空隙](001-human-fills-agent-collaboration-gaps.md)
+2. [人从持续协调者转变为关键判断者](002-human-as-key-decision-maker.md)
