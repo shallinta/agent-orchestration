@@ -19,3 +19,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 1. [人被迫填补 Agent 之间的协作空隙](001-human-fills-agent-collaboration-gaps.md)
 2. [人从持续协调者转变为关键判断者](002-human-as-key-decision-maker.md)
 3. [组合不同 Agent 的比较优势](003-combine-agent-comparative-advantages.md)
+4. [Harness 调度的是项目参与者](004-harness-orchestrates-project-participants.md)
