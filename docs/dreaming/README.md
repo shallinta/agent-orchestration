@@ -20,3 +20,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 2. [人从持续协调者转变为关键判断者](002-human-as-key-decision-maker.md)
 3. [组合不同 Agent 的比较优势](003-combine-agent-comparative-advantages.md)
 4. [Harness 调度的是项目参与者](004-harness-orchestrates-project-participants.md)
+5. [身份资料卡是模板，参与者是 thread 内实例](005-profile-template-and-thread-participant.md)
