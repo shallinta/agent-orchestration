@@ -16,7 +16,7 @@
 - Harness 负责 Agent 间通信、结构化消息解析、外部动作执行、并发控制、检查点、定时任务和持久化。
 - 用户作为高权重的特殊参与者加入 thread，并在关键决策点保留最终控制权。
 - 核心执行逻辑与前端 UI 解耦，通过稳定协议连接 Electrobun、Web、飞书、Telegram 等不同界面或渠道。
-- 在多次需求中持续沉淀公共经验和业务知识，改善后续协作效果。
+- 在一个 thread 内形成可交付的经验、知识和业务资料；跨 thread、跨项目管理属于未来可能的相邻产品。
 - 未来可扩展到内容创作、数据分析、金融研究等非代码协作场景。
 
 ## 近期明确不做
@@ -33,4 +33,5 @@
 - [项目手记](CHANGELOG.md)：持续记录想法、方案、实现和方向变化。
 - [立项记录](docs/project-log/2026-08-12-inception.md)：保存项目起点、核心痛点和最初设想。
 - [延后设计线索](docs/project-log/deferred-design-ideas.md)：保存讨论中出现但尚未进入设计阶段的实现方向。
+- [未来相邻产品想法](docs/project-log/future-product-ideas.md)：保存不属于当前 Harness 职责的独立产品方向。
 - [架构与产品决策](docs/decisions/README.md)：记录经过讨论并确认的重要决定。
