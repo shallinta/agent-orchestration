@@ -27,3 +27,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 9. [消息路由、完整记录与权限分层](009-message-routing-persistence-and-permission-layers.md)
 10. [委托是独立跟踪的工作责任](010-delegation-as-tracked-work-responsibility.md)
 11. [语义判断属于角色，Harness 负责确定性执行](011-semantic-judgment-and-deterministic-harness.md)
+12. [Thread 的生命周期可以跨越权威目标](012-thread-outlives-authoritative-goals.md)
