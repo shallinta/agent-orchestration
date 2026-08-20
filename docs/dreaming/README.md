@@ -25,3 +25,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 7. [每个 Thread 同时只有一个主持](007-one-digital-main-participant.md)
 8. [Thread 的创建、治理与权威目标](008-thread-creation-governance-and-goal.md)
 9. [消息路由、完整记录与权限分层](009-message-routing-persistence-and-permission-layers.md)
+10. [委托是独立跟踪的工作责任](010-delegation-as-tracked-work-responsibility.md)
