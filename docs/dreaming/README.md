@@ -28,3 +28,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 10. [委托是独立跟踪的工作责任](010-delegation-as-tracked-work-responsibility.md)
 11. [语义判断属于角色，Harness 负责确定性执行](011-semantic-judgment-and-deterministic-harness.md)
 12. [Thread 的生命周期可以跨越权威目标](012-thread-outlives-authoritative-goals.md)
+13. [进展快照是完整记录的语义派生视图](013-progress-snapshots-derived-from-complete-records.md)
