@@ -31,3 +31,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 13. [进展快照是完整记录的语义派生视图](013-progress-snapshots-derived-from-complete-records.md)
 14. [新角色通过分层入场上下文进入已有 Thread](014-layered-entry-context-for-new-roles.md)
 15. [每个 Thread 都有持续维护的知识检索层](015-maintained-thread-knowledge-retrieval-layer.md)
+16. [多角色讨论沿用普通 Thread 协作能力](016-multi-role-discussion-uses-ordinary-thread-collaboration.md)
