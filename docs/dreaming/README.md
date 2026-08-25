@@ -32,3 +32,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 14. [新角色通过分层入场上下文进入已有 Thread](014-layered-entry-context-for-new-roles.md)
 15. [每个 Thread 都有持续维护的知识检索层](015-maintained-thread-knowledge-retrieval-layer.md)
 16. [多角色讨论沿用普通 Thread 协作能力](016-multi-role-discussion-uses-ordinary-thread-collaboration.md)
+17. [资源预算是 Thread 自治的强制边界](017-thread-resource-budgets-bound-autonomy.md)
