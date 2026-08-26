@@ -43,3 +43,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 25. [有效截止要求不同于期望时间与时间建议](025-effective-deadline-requirement-vs-time-preference.md)
 26. [Agent 内部失败不同于 Harness 调用故障](026-agent-internal-failure-vs-harness-invocation-failure.md)
 27. [角色停用可逆，唯一标签必须先转交](027-role-disablement-is-reversible-and-requires-unique-label-transfer.md)
+28. [角色停用区分优雅与强制意图](028-role-disablement-distinguishes-graceful-and-force-intent.md)
