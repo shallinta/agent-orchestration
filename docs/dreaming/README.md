@@ -48,3 +48,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 30. [目标确认前允许主持组织探索性协作](030-host-may-organize-exploration-before-goal-confirmation.md)
 31. [权威目标通过两条入口形成同一种确认事实](031-two-paths-produce-the-same-authoritative-goal-confirmation.md)
 32. [权威目标只统一要求两项最低内容](032-authoritative-goal-requires-only-two-universal-elements.md)
+33. [目标确认后形成足以推进当前阶段的安排](033-host-forms-a-sufficient-current-stage-arrangement.md)
