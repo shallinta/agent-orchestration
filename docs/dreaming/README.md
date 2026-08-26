@@ -41,3 +41,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 23. [委托发布者提供排序输入，不自动获得跨工作排序权](023-delegation-publisher-provides-ordering-input-not-cross-work-authority.md)
 24. [委托截止时间事件不自动改变委托](024-delegation-deadline-events-do-not-change-delegation.md)
 25. [有效截止要求不同于期望时间与时间建议](025-effective-deadline-requirement-vs-time-preference.md)
+26. [Agent 内部失败不同于 Harness 调用故障](026-agent-internal-failure-vs-harness-invocation-failure.md)
