@@ -35,3 +35,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 17. [资源预算是 Thread 自治的强制边界](017-thread-resource-budgets-bound-autonomy.md)
 18. [自治程度由三项正交约束共同形成](018-autonomy-results-from-three-orthogonal-constraints.md)
 19. [审批等待只阻塞发起角色的普通工作并暴露可用状态](019-approval-waiting-blocks-role-and-exposes-availability.md)
+20. [角色并发能力限制主动执行，不限制待处理责任](020-concurrency-capacity-limits-active-execution-not-pending-responsibilities.md)
