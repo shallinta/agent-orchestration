@@ -36,3 +36,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 18. [自治程度由三项正交约束共同形成](018-autonomy-results-from-three-orthogonal-constraints.md)
 19. [审批等待只阻塞发起角色的普通工作并暴露可用状态](019-approval-waiting-blocks-role-and-exposes-availability.md)
 20. [角色并发能力限制主动执行，不限制待处理责任](020-concurrency-capacity-limits-active-execution-not-pending-responsibilities.md)
+21. [待处理顺序由明确规则与可记录调整共同决定](021-pending-order-uses-explicit-rules-and-recorded-adjustments.md)
