@@ -51,3 +51,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 33. [目标确认后形成足以推进当前阶段的安排](033-host-forms-a-sufficient-current-stage-arrangement.md)
 34. [主持自主选择已有角色并显式报告能力阻塞](034-host-selects-existing-roles-and-reports-capability-blockage.md)
 35. [委托提供起步上下文，目标角色按需主动查询](035-delegation-provides-starting-context-and-role-queries-as-needed.md)
+36. [委托发布者吸收结果，重要影响再同步主持](036-delegation-publisher-absorbs-results-and-syncs-host-when-relevant.md)
