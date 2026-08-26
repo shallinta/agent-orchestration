@@ -39,3 +39,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 21. [待处理顺序由明确规则与可记录调整共同决定](021-pending-order-uses-explicit-rules-and-recorded-adjustments.md)
 22. [主持顺序约束限定目标角色的调序自治](022-host-ordering-constraints-bound-target-role-autonomy.md)
 23. [委托发布者提供排序输入，不自动获得跨工作排序权](023-delegation-publisher-provides-ordering-input-not-cross-work-authority.md)
+24. [委托截止时间事件不自动改变委托](024-delegation-deadline-events-do-not-change-delegation.md)
