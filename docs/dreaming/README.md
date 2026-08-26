@@ -33,3 +33,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 15. [每个 Thread 都有持续维护的知识检索层](015-maintained-thread-knowledge-retrieval-layer.md)
 16. [多角色讨论沿用普通 Thread 协作能力](016-multi-role-discussion-uses-ordinary-thread-collaboration.md)
 17. [资源预算是 Thread 自治的强制边界](017-thread-resource-budgets-bound-autonomy.md)
+18. [自治程度由三项正交约束共同形成](018-autonomy-results-from-three-orthogonal-constraints.md)
