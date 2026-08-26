@@ -46,3 +46,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 28. [角色停用区分优雅与强制意图](028-role-disablement-distinguishes-graceful-and-force-intent.md)
 29. [主持从初始意图开始承担推进责任](029-host-responsibility-starts-from-initial-intent.md)
 30. [目标确认前允许主持组织探索性协作](030-host-may-organize-exploration-before-goal-confirmation.md)
+31. [权威目标通过两条入口形成同一种确认事实](031-two-paths-produce-the-same-authoritative-goal-confirmation.md)
