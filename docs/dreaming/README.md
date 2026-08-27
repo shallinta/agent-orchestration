@@ -57,3 +57,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 39. [推进语义属于 Thread 内角色，Harness 不预设阶段模型](039-progress-language-is-thread-local-not-a-harness-stage-model.md)
 40. [主持以结果依据和重要未决事项提出目标完成](040-host-submits-evidence-backed-goal-completion-proposal.md)
 41. [委托只发生在 Agent 角色之间](041-delegation-exists-only-between-agent-roles.md)
+42. [目标完成不级联改变委托，主持负责收束受影响责任](042-goal-completion-does-not-cascade-to-delegations.md)
