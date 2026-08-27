@@ -54,3 +54,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 36. [委托发布者吸收结果，重要影响再同步主持](036-delegation-publisher-absorbs-results-and-syncs-host-when-relevant.md)
 37. [独立评审按明确要求或语义风险发生](037-independent-review-is-required-or-risk-driven-not-universal.md)
 38. [委托终态只关闭工作责任，不关闭相关沟通](038-delegation-terminal-state-closes-responsibility-not-conversation.md)
+39. [推进语义属于 Thread 内角色，Harness 不预设阶段模型](039-progress-language-is-thread-local-not-a-harness-stage-model.md)
