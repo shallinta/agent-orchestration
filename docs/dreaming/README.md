@@ -60,3 +60,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 42. [目标完成不级联改变委托，主持负责收束受影响责任](042-goal-completion-does-not-cascade-to-delegations.md)
 43. [无当前目标时主持提供有限后续选择，并可进入主动静默](043-host-offers-limited-follow-ups-and-can-become-proactively-silent.md)
 44. [定时与心跳能力承载重复行为，不新增持续活动概念](044-scheduled-and-heartbeat-capabilities-carry-recurring-behavior.md)
+45. [定时任务到时做事，心跳检测到时判断是否行动](045-scheduled-tasks-do-work-heartbeats-decide-whether-to-act.md)
