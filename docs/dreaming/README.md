@@ -65,3 +65,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 47. [Harness 保留最低限度成果痕迹，不记录工作空间变化历史](047-minimum-result-traces-without-workspace-change-history.md)
 48. [Harness 必须支持无需真人持续协调的连续推进](048-harness-enables-coordination-free-continuous-progress.md)
 49. [核心保持领域无关，软件开发是首要验证场景](049-domain-neutral-core-with-software-development-as-primary-proving-ground.md)
+50. [Harness 承载 Thread 协作事实，客户端只是能力不等的访问入口](050-harness-owns-thread-reality-clients-are-partial-access-surfaces.md)
