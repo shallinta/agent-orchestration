@@ -67,3 +67,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 49. [核心保持领域无关，软件开发是首要验证场景](049-domain-neutral-core-with-software-development-as-primary-proving-ground.md)
 50. [Harness 承载 Thread 协作事实，客户端只是能力不等的访问入口](050-harness-owns-thread-reality-clients-are-partial-access-surfaces.md)
 51. [可参与 Agent 需要程序化的 Agent 级工作边界](051-participating-agents-need-programmatic-agent-level-boundaries.md)
+52. [身份卡是外部维护的简历，不自动改变既有角色](052-identity-cards-are-external-resumes-and-do-not-auto-update-roles.md)
