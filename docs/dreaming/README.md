@@ -69,3 +69,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 51. [可参与 Agent 需要程序化的 Agent 级工作边界](051-participating-agents-need-programmatic-agent-level-boundaries.md)
 52. [身份卡是外部维护的简历，不自动改变既有角色](052-identity-cards-are-external-resumes-and-do-not-auto-update-roles.md)
 53. [Harness 提供公共协作能力，不代理 Agent 的全部工具](053-harness-provides-shared-collaboration-capabilities-not-a-universal-tool-proxy.md)
+54. [约束必须公开其真实保证强度](054-constraints-must-disclose-their-real-guarantee-strength.md)
