@@ -64,3 +64,4 @@ Dreaming 用来逐项理解这个项目为什么存在、需要解决什么，�
 46. [用户角色消息发往所连 Channel，发送不等于要求回应](046-user-role-channel-delivery-does-not-require-a-response.md)
 47. [Harness 保留最低限度成果痕迹，不记录工作空间变化历史](047-minimum-result-traces-without-workspace-change-history.md)
 48. [Harness 必须支持无需真人持续协调的连续推进](048-harness-enables-coordination-free-continuous-progress.md)
+49. [核心保持领域无关，软件开发是首要验证场景](049-domain-neutral-core-with-software-development-as-primary-proving-ground.md)
