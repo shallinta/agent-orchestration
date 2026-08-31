@@ -30,6 +30,7 @@ Dreaming 记录作为历史认识依据保留，但后续讨论不再延续 Drea
 ## 项目记录
 
 - [Dreaming 阶段完成记录](docs/project-log/2026-08-31-dreaming-phase-completion.md)：Dreaming 0–54 的完成依据、核心成果与后续问题分类。
+- [Dreaming 核心成果视觉番外](docs/project-log/2026-08-31-dreaming-visual-extras.md)：核心用户旅程与产品功能版图的两张手绘概览图。
 - [Dreaming 索引](docs/dreaming/README.md)：从核心问题到未来可能需求的完整阶段性思想成果。
 - [Dreaming 0–53 主线审计](docs/project-log/2026-08-31-dreaming-0-53-mainline-audit.md)：当前核心闭环、支撑能力、外围职责与真实缺口的阶段性检查。
 - [项目手记](CHANGELOG.md)：持续记录想法、方案、实现和方向变化。
