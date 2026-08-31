@@ -8,6 +8,18 @@
 
 Dreaming 记录作为历史认识依据保留，但后续讨论不再延续 Dreaming 编号。新的讨论阶段将在真正开始时另行命名并约定目标；只有用户明确提出进入版本规划后，才开始讨论从 `v0.0.1` 起的具体迭代范围。
 
+## 产品概览
+
+### 核心用户旅程
+
+![核心用户旅程](docs/assets/visuals/core-user-journey-hand-drawn-16x9.png)
+
+### 产品功能版图
+
+![产品功能版图](docs/assets/visuals/product-capability-landscape-hand-drawn-16x9.png)
+
+两张图是 Dreaming 核心成果的视觉摘要，为了可读性省略了部分条件与边界，不替代[Dreaming 阶段完成记录](docs/project-log/2026-08-31-dreaming-phase-completion.md)及其他正式文字记录。生成说明与完整提示词见[视觉番外](docs/project-log/2026-08-31-dreaming-visual-extras.md)。
+
 ## 长期愿景
 
 - Harness 使用由平台用户提供和维护的 Agent 身份卡，包括名称、场景身份、性格、回复风格、发言权重、擅长方向、能力特征和调用方式；身份卡的评价与维护过程不属于 Harness 核心。

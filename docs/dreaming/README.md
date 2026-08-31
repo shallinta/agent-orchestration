@@ -10,6 +10,18 @@ Dreaming 阶段已于 2026-08-31 正式完成，最终记录范围为 Dreaming 0
 
 本阶段从最核心需求开始，逐渐讨论近期需求、支撑需求、边界条件和远期可能需求。每当一个足够小的思想点形成双方都能清楚复述的阶段性认识，就记录为一个递增编号。
 
+## 核心成果视觉概览
+
+### 核心用户旅程
+
+![核心用户旅程](../assets/visuals/core-user-journey-hand-drawn-16x9.png)
+
+### 产品功能版图
+
+![产品功能版图](../assets/visuals/product-capability-landscape-hand-drawn-16x9.png)
+
+图片用于快速建立整体印象，不替代下方 Dreaming 原文及其后编号覆盖关系。图片说明与生成提示词见[视觉番外](../project-log/2026-08-31-dreaming-visual-extras.md)。
+
 ## 如何理解这些记录
 
 - 编号表示首次成文的先后顺序，不代表价值排序、开发顺序或版本优先级。
