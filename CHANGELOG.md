@@ -567,3 +567,11 @@ Dreaming 完成后，用户决定下一阶段先做核心技术可行性调研�
 对照结论是：AutoGen 与本项目在消息路由、Agent 生命周期、多 Agent 协作、状态与可观测性上有强参考关系，但 AutoGen 主要是开发者用来创建模型驱动 Agent 应用的框架，本项目则要编排外部成熟 Agent 产品、真人角色和持久 thread 治理，两者不是直接替代关系。AutoGen 当前已进入维护模式，官方建议新项目转向 Microsoft Agent Framework，因此不建议把 AutoGen 作为当前 Harness 核心底座，但保留其设计机制的学习价值。
 
 本次只依据 2026-09-01 可获得的官方仓库与文档形成资料级结论，没有运行 AutoGen 原型，没有选定技术栈或形成架构决策。
+
+## 2026-09-01：外部项目调研与 Stargazing 正式分流
+
+用户指出 AutoGen 对照不应进入 Stargazing 序列。此前把它记作 `Stargazing 1` 是分类错误：它是在理解外部项目的现状与边界，并没有针对已确认的核心技术假设执行可行性实验。因此保留上一条手记作为真实变化过程，同时把报告迁移到新的 `docs/research/` 外部项目调研目录，Stargazing 总计划恢复为尚待用户审阅的原始 1–9。
+
+随后依据 AutoGen 官方继任建议，继续调研 Microsoft Agent Framework。当前资料结论比 AutoGen 更积极：MAF 的 Agent service、GitHub Copilot 与 Claude Agent SDK 集成、A2A、AgentSession、workflow checkpoint、HITL、Durable Extension、MCP 和拦截机制都与本项目底层问题有实质交集，值得拆成具体假设继续验证。但 MAF 仍不提供本项目的身份卡、角色与系统标签、权威目标、委托责任和完整 thread 事实，也没有在本次官方资料中发现 Codex CLI 一等适配器，因此尚不能宣布为 Harness 底座。
+
+同时明确了一个容易产生误解的同名术语：MAF 的 Agent Harness 是把 chat client 补成单个长任务 Agent 的运行脚手架，本项目 Harness 则负责多个既有 Agent 与真人之间的长期协作，两者不是同一产品概念。本次 MAF 调研同样只进入 `docs/research/`，不占用 Stargazing 编号，也不形成技术选型决定。

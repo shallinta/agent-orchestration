@@ -1,8 +1,10 @@
-# Stargazing 1：AutoGen 与本项目的边界对照
+# AutoGen 与本项目的边界对照
 
 日期：2026-09-01
 
 状态：完成官方资料对照
+
+性质：外部项目调研，不属于 Stargazing 编号序列，不是技术选型决策
 
 结论：AutoGen 对本项目具有重要的设计参考价值，但不是同一产品，也不宜作为当前 Harness 的核心底座
 
@@ -117,11 +119,11 @@ AutoGen 的 RoundRobin、SelectorGroupChat、Swarm 和 GraphFlow 对模式试验
 
 更合适的当前用法是：把 AutoGen 当作参考实现与对照组，在后续某个具体问题上借鉴或试验它的机制，而不是在还没有底层证据时把整个项目建立在其上。
 
-## 对后续 Stargazing 的影响
+## 对后续探索的参考价值
 
 1. **不修改 Dreaming 核心边界。** AutoGen 没有证明本项目想解决的问题已经被完整解决，反而帮助明确了“构建 Agent”与“编排现有 Agent 参与持久协作”的差异。
 2. **强化后续评估基线。** 对候选框架必须分别评估消息运行时、Agent 适配、完整事实、人类异步参与、治理约束和恢复保证，不能用“支持 multi-agent”一句话代替。
-3. **保留 Microsoft Agent Framework 待调研。** 它是 AutoGen 官方指定的新项目方向，不对它进行单独核实，就不应将“AutoGen 不适合”扩展为“微软的 Agent 框架方向都不适合”。是否将它加入 Stargazing 主线，留待用户决定。
+3. **单独调研 Microsoft Agent Framework。** 它是 AutoGen 官方指定的新项目方向，不对它进行单独核实，就不应将“AutoGen 不适合”扩展为“微软的 Agent 框架方向都不适合”。外部资料调研本身不进入 Stargazing；如果由此产生值得实证的具体假设，再由用户另行决定是否开展 Stargazing 实验。
 4. **不急于运行 AutoGen 原型。** 资料已足以反对直接底座选型；只有后续出现具体假设，例如需要比较 topic 路由或 Team state 机制时，才值得编写可丢弃探针。
 
 ## 结论限制

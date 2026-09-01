@@ -42,6 +42,7 @@ Dreaming 记录作为历史认识依据保留，后续讨论不再延续 Dreamin
 ## 项目记录
 
 - [Stargazing：核心技术可行性探索](docs/stargazing/README.md)：当前阶段入口、探索原则、总计划和观星日志。
+- [外部项目调研](docs/research/README.md)：记录 AutoGen、Microsoft Agent Framework 等外部方案与本项目的边界对照，不属于 Stargazing 编号序列。
 - [Dreaming 阶段完成记录](docs/project-log/2026-08-31-dreaming-phase-completion.md)：Dreaming 0–54 的完成依据、核心成果与后续问题分类。
 - [Dreaming 核心成果视觉番外](docs/project-log/2026-08-31-dreaming-visual-extras.md)：核心用户旅程与产品功能版图的两张手绘概览图。
 - [Dreaming 索引](docs/dreaming/README.md)：从核心问题到未来可能需求的完整阶段性思想成果。
