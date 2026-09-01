@@ -559,3 +559,11 @@ Dreaming 完成后，用户决定下一阶段先做核心技术可行性调研�
 记录目录由 `docs/technical-feasibility/` 迁移为 `docs/stargazing/`，总计划和持续记录分别简化为 `plan.md` 与 `logbook.md`。原先的 TF-01 至 TF-09 改为 `Stargazing 1` 至 `Stargazing 9`，并记下一个编号可以跨越多轮探索，不按对话次数递增。
 
 本次仍只处理阶段命名、目录与记录规则；没有开始 Stargazing 1 的资料调研或实验，总计划仍等待用户审阅。
+
+## 2026-09-01：Stargazing 1 对照调研 AutoGen
+
+用户明确要求先调研 AutoGen 并与当前项目想法对比，因此将这项用户单独发起的工作记为 Stargazing 1，原计划九项顺延为 Stargazing 2–10。这次顺序变化不代表整份计划已被用户确认；后续探索仍需明确开始。
+
+对照结论是：AutoGen 与本项目在消息路由、Agent 生命周期、多 Agent 协作、状态与可观测性上有强参考关系，但 AutoGen 主要是开发者用来创建模型驱动 Agent 应用的框架，本项目则要编排外部成熟 Agent 产品、真人角色和持久 thread 治理，两者不是直接替代关系。AutoGen 当前已进入维护模式，官方建议新项目转向 Microsoft Agent Framework，因此不建议把 AutoGen 作为当前 Harness 核心底座，但保留其设计机制的学习价值。
+
+本次只依据 2026-09-01 可获得的官方仓库与文档形成资料级结论，没有运行 AutoGen 原型，没有选定技术栈或形成架构决策。

@@ -8,9 +8,10 @@
 
 - 阶段：`Stargazing`（核心技术可行性探索）
 - 开始日期：2026-09-01
-- 当前状态：计划待用户审阅，尚未开始具体实验
+- 当前状态：Stargazing 1 已完成官方资料对照；其余计划仍可调整，尚未开始具体实验
 - 总计划：[Stargazing 探索计划](plan.md)
 - 持续记录：[Stargazing 观星日志](logbook.md)
+- 已完成：[Stargazing 1：AutoGen 与本项目的边界对照](001-autogen-comparison.md)
 
 ## 为什么单独建立这个目录
 

@@ -2,7 +2,7 @@
 
 日期：2026-09-01
 
-状态：待用户审阅
+状态：进行中；Stargazing 1 由用户单项发起，其余计划仍可调整
 
 性质：技术调研计划，不是产品实现计划、版本范围或架构决策
 
@@ -35,7 +35,7 @@ Stargazing 要判断：以当前可获得的成熟 Agent 产品和程序化能�
 2. **孤立技术探针**：分别编写调用、恢复和协议实验。证据具体，但如果缺少共同主线，可能形成许多局部成功却无法组成产品闭环。
 3. **门槛驱动调研**：先验证 Agent 边界，再验证公共能力通道，随后组成最小连续协作，最后补充恢复与保证强度。每一层都以前一层证据为前提。
 
-本计划推荐第三种。它最早暴露会阻断 Harness 核心价值的问题，同时仍允许 Codex 与 Claude Code 的独立调研并行进行。该推荐在计划审阅后才生效，不是不可修改的架构决定。
+本计划推荐第三种。它最早暴露会阻断 Harness 核心价值的问题，同时仍允许 Codex 与 Claude Code 的独立调研并行进行。用户可以在整体计划完全审阅前明确发起某个单项探索；其他项目不因此自动获得开始授权。该推荐不是不可修改的架构决定。
 
 ## 证据标准
 
@@ -51,7 +51,23 @@ Stargazing 要判断：以当前可获得的成熟 Agent 产品和程序化能�
 
 ## 调研主线与顺序
 
-### Stargazing 1：环境与评估基线
+### Stargazing 1：AutoGen 与本项目的边界对照
+
+**目的：** 核实 AutoGen 当前官方定位、维护状态、核心抽象与运行边界，判断它与本项目是同类产品、可候选技术底座，还是主要具有对照价值。
+
+**需要回答：**
+
+- AutoGen 现在是什么，是否仍适合新项目直接采用；
+- 它的 Core、AgentChat、Extensions 和 Studio 各自承担什么责任；
+- Agent 身份与生命周期、消息路由、Team 协作、人类参与、状态恢复和可观测性能否覆盖本项目核心；
+- 它是否原生面向 Codex CLI、Claude Code CLI 这类已成熟 Agent 产品；
+- 哪些机制值得借鉴，哪些抽象不应直接带入本项目。
+
+**产物：** `001-autogen-comparison.md`
+
+**状态：** 已完成官方资料对照；未运行 AutoGen 代码或原型实验。
+
+### Stargazing 2：环境与评估基线
 
 **目的：** 建立后续所有结论共同使用的环境事实和“可靠程序化边界”检查表。
 
@@ -62,11 +78,11 @@ Stargazing 要判断：以当前可获得的成熟 Agent 产品和程序化能�
 - 后续如何一致检查启动、输入、输出、会话连续性、退出、超时、取消、并发、工作目录和资源统计；
 - 哪些实验允许使用真实项目，哪些只能使用隔离的无副作用样例目录。
 
-**计划产物：** `001-environment-and-evaluation-baseline.md`
+**计划产物：** `002-environment-and-evaluation-baseline.md`
 
 **进入下一层的条件：** 检查维度和安全实验边界明确；没有要求所有能力已经可行。
 
-### Stargazing 2：Codex CLI 程序化协作边界
+### Stargazing 3：Codex CLI 程序化协作边界
 
 **目的：** 用当前官方资料与真实调用验证 Codex 是否满足一个 Agent 角色的基本接入需要。
 
@@ -79,13 +95,13 @@ Stargazing 要判断：以当前可获得的成熟 Agent 产品和程序化能�
 - 并行运行多个独立 Codex 角色是否存在共享状态或资源冲突；
 - token、调用时长或其他成本数据能观察到多少，哪些仍未覆盖。
 
-**计划产物：** `002-codex-cli-programmatic-boundary.md`
+**计划产物：** `003-codex-cli-programmatic-boundary.md`
 
 **核心门槛：** 至少存在一条无需人工操作终端、能够发起工作、关联后续输入并取得可用或明确受阻结果的可复现路径。
 
-### Stargazing 3：Claude Code CLI 程序化协作边界
+### Stargazing 4：Claude Code CLI 程序化协作边界
 
-**目的：** 用与 Stargazing 2 相同的核心检查维度验证 Claude Code，同时保留它自己的实际语义。
+**目的：** 用与 Stargazing 3 相同的核心检查维度验证 Claude Code，同时保留它自己的实际语义。
 
 **需要回答：**
 
@@ -96,15 +112,15 @@ Stargazing 要判断：以当前可获得的成熟 Agent 产品和程序化能�
 - 多个独立 Claude Code 角色并行时是否可靠；
 - 能够观察和限制哪些资源消耗。
 
-**计划产物：** `003-claude-code-cli-programmatic-boundary.md`
+**计划产物：** `004-claude-code-cli-programmatic-boundary.md`
 
-**核心门槛：** 与 Stargazing 2 相同，但不要求两种 Agent 使用相同命令、输出或会话机制。
+**核心门槛：** 与 Stargazing 3 相同，但不要求两种 Agent 使用相同命令、输出或会话机制。
 
-Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
+Stargazing 3 与 Stargazing 4 在 Stargazing 2 完成后可以并行推进。
 
-### Stargazing 4：异构 Agent 的共同接入边界
+### Stargazing 5：异构 Agent 的共同接入边界
 
-**目的：** 根据 Stargazing 2 与 Stargazing 3 的真实差异，判断 Harness 是否能建立足够小的共同调用边界，同时允许 Agent 特有行为存在。
+**目的：** 根据 Stargazing 3 与 Stargazing 4 的真实差异，判断 Harness 是否能建立足够小的共同调用边界，同时允许 Agent 特有行为存在。
 
 **需要回答：**
 
@@ -114,11 +130,11 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 - 调用成功、正常受阻、调用故障和结果未知能否保持产品层区分；
 - 一个未来自定义接入点最低必须证明哪些能力，而不把裸模型补造成 Agent。
 
-**计划产物：** `004-heterogeneous-agent-common-boundary.md`
+**计划产物：** `005-heterogeneous-agent-common-boundary.md`
 
 **核心门槛：** 能描述一个不抹平真实差异、也不依赖特定产品名的最小共同边界。此项只形成可行性结论和候选方向，不设计最终接口。
 
-### Stargazing 5：Harness 公共协作能力通道
+### Stargazing 6：Harness 公共协作能力通道
 
 **目的：** 验证 Agent 能否以确定性、可归因的方式使用发消息、发布委托和查询 thread 等 Harness 公共能力。
 
@@ -133,11 +149,11 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 
 **最小实验能力：** `send_message`、`publish_delegation`、`query_thread`。实验只需操作隔离的临时事实，不建立完整产品模型。
 
-**计划产物：** `005-harness-public-capability-channel.md`
+**计划产物：** `006-harness-public-capability-channel.md`
 
 **核心门槛：** Codex 与 Claude Code 各自至少存在一条机器可解析、能够绑定调用角色并取得明确成功或失败结果的公共能力调用路径。两者不强制使用同一种通道。
 
-### Stargazing 6：最小免人工中转连续闭环
+### Stargazing 7：最小免人工中转连续闭环
 
 **目的：** 将前述证据组合起来，验证产品最核心的技术假设，而不是验证完整产品功能。
 
@@ -152,11 +168,11 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 
 这条链路可以使用无副作用的小任务和临时事实存储，不要求引入完整目标模型、知识层、审批、UI 或正式数据库。
 
-**计划产物：** `006-minimal-continuous-collaboration-loop.md`
+**计划产物：** `007-minimal-continuous-collaboration-loop.md`
 
 **核心门槛：** 至少一次使用两个真实 Agent 角色的完整闭环可以复现；若只能依赖真人转发，或只能把固定脚本冒充主持判断，则当前技术方向不能证明核心价值。
 
-### Stargazing 7：持久化、进程重启与不确定结果
+### Stargazing 8：持久化、进程重启与不确定结果
 
 **目的：** 判断 Harness 自己重启或 Agent 调用中断后，是否能够恢复协作事实并诚实表达无法确认的部分。
 
@@ -170,11 +186,11 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 - 何时只能报告结果未知，而不能声称失败或成功；
 - 实验用存储和恢复机制证明了什么，又没有证明什么。
 
-**计划产物：** `007-persistence-restart-and-unknown-outcome.md`
+**计划产物：** `008-persistence-restart-and-unknown-outcome.md`
 
 **核心门槛：** 至少能恢复已确认的 thread 事实，并对无法确认的 Agent 执行保持诚实；不要求本阶段完成生产级高可用或通用幂等方案。
 
-### Stargazing 8：并发、取消、停用与保证强度
+### Stargazing 9：并发、取消、停用与保证强度
 
 **目的：** 验证 Harness 对正在运行的真实 Agent 能观察和控制到什么程度，并把强制、外部强制、弱约束和未覆盖范围分开。
 
@@ -186,15 +202,15 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 - Harness 能够计量和阻止哪些调用成本，Agent 内部成本或外部成本有哪些盲区；
 - 强制边界不可用时能否被检测，哪些情况只能依赖配置说明或提示词。
 
-**计划产物：** `008-concurrency-cancellation-and-guarantees.md`
+**计划产物：** `009-concurrency-cancellation-and-guarantees.md`
 
 **核心门槛：** 形成基于实际证据的保证矩阵；不要求所有能力都能被 Harness 强制控制，但不允许把未覆盖能力描述为已经受控。
 
-### Stargazing 9：阶段综合结论
+### Stargazing 10：阶段综合结论
 
 **目的：** 汇总各项证据，判断当前技术条件是否足以进入具体产品设计或版本规划。
 
-**计划产物：** `009-feasibility-synthesis.md`
+**计划产物：** `010-feasibility-synthesis.md`
 
 综合结论至少包含：
 
@@ -209,19 +225,23 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 ## 依赖关系与推进方式
 
 ```text
-Stargazing 1 环境与评估基线
- ├─ Stargazing 2 Codex CLI 边界 ─┐
- └─ Stargazing 3 Claude Code 边界 ├─ Stargazing 4 共同接入边界
-                                       └─ Stargazing 5 公共能力通道
+Stargazing 1 AutoGen 边界对照（已完成）
+                 │
+                 └─ 为后续评估维度提供对照，不作为技术底座前置
+
+Stargazing 2 环境与评估基线
+ ├─ Stargazing 3 Codex CLI 边界 ─┐
+ └─ Stargazing 4 Claude Code 边界 ├─ Stargazing 5 共同接入边界
+                                       └─ Stargazing 6 公共能力通道
                                   ↓
-                         Stargazing 6 最小连续协作闭环
-                           ├─ Stargazing 7 重启与恢复
-                           └─ Stargazing 8 并发、取消与保证
+                         Stargazing 7 最小连续协作闭环
+                           ├─ Stargazing 8 重启与恢复
+                           └─ Stargazing 9 并发、取消与保证
                                   ↓
-                             Stargazing 9 综合结论
+                             Stargazing 10 综合结论
 ```
 
-Stargazing 2 与 Stargazing 3 可以并行；Stargazing 7 和 Stargazing 8 可以在 Stargazing 6 的稳定实验基线上部分并行。其他事项按依赖顺序推进，避免在基础调用边界尚未成立时提前设计完整运行系统。
+Stargazing 1 为后续评估补充了“构建 Agent 的框架”与“编排外部成熟 Agent 的 Harness”的边界对照，但不是 Stargazing 2 的技术前置。Stargazing 3 与 Stargazing 4 可以并行；Stargazing 8 和 Stargazing 9 可以在 Stargazing 7 的稳定实验基线上部分并行。其他事项按依赖顺序推进，避免在基础调用边界尚未成立时提前设计完整运行系统。
 
 ## 每项调研的完成检查
 
@@ -239,7 +259,7 @@ Stargazing 2 与 Stargazing 3 可以并行；Stargazing 7 和 Stargazing 8 可�
 
 本阶段在以下条件同时满足时才可以提议完成：
 
-1. Stargazing 1 至 Stargazing 9 均有结论，或某项因前置不可行而有明确停止理由；
+1. Stargazing 1 至 Stargazing 10 均有结论，或某项因前置不可行而有明确停止理由；
 2. Codex CLI 与 Claude Code CLI 的实际程序化边界均有当前版本证据；
 3. Harness 公共能力通道至少对两种 Agent 各验证一条可行路径；
 4. 至少完成一次由两个真实 Agent 角色参与、无需真人转发消息的连续闭环；
