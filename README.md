@@ -4,9 +4,9 @@
 
 ## 当前阶段
 
-项目已经完成长期、细粒度的 Dreaming 阶段，形成 Dreaming 0–54 的产品认识记录与阶段完成总结。当前进入核心技术可行性调研阶段，先验证目标 Agent 的程序化协作边界、Harness 公共能力通道、免人工中转闭环以及恢复和约束保证；尚未进入版本范围、正式技术方案或产品实现。
+项目已经完成长期、细粒度的 Dreaming 阶段，形成 Dreaming 0–54 的产品认识记录与阶段完成总结。当前进入 `Stargazing`——核心技术可行性探索阶段，先验证目标 Agent 的程序化协作边界、Harness 公共能力通道、免人工中转闭环以及恢复和约束保证；尚未进入版本范围、正式技术方案或产品实现。
 
-Dreaming 记录作为历史认识依据保留，后续讨论不再延续 Dreaming 编号。技术可行性调研记录在[`docs/technical-feasibility/`](docs/technical-feasibility/README.md)；调研可以使用可丢弃的最小实验取得证据，但不会仅因实验跑通就把候选路径升级为正式架构。只有用户明确提出进入版本规划后，才开始讨论从 `v0.0.1` 起的具体迭代范围。
+Dreaming 记录作为历史认识依据保留，后续讨论不再延续 Dreaming 编号。Stargazing 记录在 [`docs/stargazing/`](docs/stargazing/README.md)，各项探索使用 `Stargazing 1`、`Stargazing 2`……递增编号；可以使用可丢弃的最小实验取得证据，但不会仅因实验跑通就把候选路径升级为正式架构。只有用户明确提出进入版本规划后，才开始讨论从 `v0.0.1` 起的具体迭代范围。
 
 ## 产品概览
 
@@ -41,7 +41,7 @@ Dreaming 记录作为历史认识依据保留，后续讨论不再延续 Dreamin
 
 ## 项目记录
 
-- [核心技术可行性调研](docs/technical-feasibility/README.md)：当前阶段入口、调研原则、总计划和持续进展。
+- [Stargazing：核心技术可行性探索](docs/stargazing/README.md)：当前阶段入口、探索原则、总计划和观星日志。
 - [Dreaming 阶段完成记录](docs/project-log/2026-08-31-dreaming-phase-completion.md)：Dreaming 0–54 的完成依据、核心成果与后续问题分类。
 - [Dreaming 核心成果视觉番外](docs/project-log/2026-08-31-dreaming-visual-extras.md)：核心用户旅程与产品功能版图的两张手绘概览图。
 - [Dreaming 索引](docs/dreaming/README.md)：从核心问题到未来可能需求的完整阶段性思想成果。
