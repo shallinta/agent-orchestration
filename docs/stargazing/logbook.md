@@ -7,7 +7,7 @@
 | 编号 | 调研事项 | 状态 | 当前结论 |
 | --- | --- | --- | --- |
 | Stargazing 1 | 评估协议与最小兼容性基线 | 已完成 | 可行 |
-| Stargazing 2 | Codex CLI 程序化协作边界 | 待开始 | 未决 |
+| Stargazing 2 | Codex CLI 程序化协作边界 | 暂停待确认 | 未决 |
 | Stargazing 3 | Claude Code CLI 程序化协作边界 | 待开始 | 未决 |
 | Stargazing 4 | 异构 Agent 的共同接入边界 | 待开始 | 未决 |
 | Stargazing 5 | Harness 公共协作能力通道 | 待开始 | 未决 |
@@ -15,6 +15,20 @@
 | Stargazing 7 | 持久化、进程重启与不确定结果 | 待开始 | 未决 |
 | Stargazing 8 | 并发、取消、停用与保证强度 | 待开始 | 未决 |
 | Stargazing 9 | 阶段综合结论 | 待开始 | 未决 |
+
+## 2026-09-02：Stargazing 2 暂停，等待读取边界决策
+
+Probe 2.1–2.5（部分）已经验证非交互 JSONL、明确 session resume、结构化 completed / blocked 声明、临时 workspace 的写入允许与拒绝，以及无效 session 和非 Git 目录的确定性失败。详细事实见单项记录。
+
+关键新发现是：`read-only` 能强制阻止临时 workspace 写入，却不能把读取范围限定在 `-C` workspace；Agent 实际读取了 workspace 外的本地 Skill 文件。`--ignore-user-config` 也没有排除 Skill 相关上下文注入。
+
+取消与并发会再次启动具备同样本地读取范围的 Agent，因此当前暂停。下一步需要用户决定：以`有条件可行`暂结并保留取消/并发未决，或在知情接受该读取风险后继续人工样例探针。Stargazing 3 没有开始。
+
+## 2026-09-02：开始 Stargazing 2
+
+用户明确要求开始验证 Codex CLI 的程序化协作边界。单项记录已先写明问题、前提、当前假设、反证条件、计划探针、判断标准和资料来源；尚未运行本机帮助或 Agent 工作探针。
+
+本项只在隔离临时目录验证当前 Codex CLI `0.144.6` 的非交互启动、JSONL 输出、指定 session 连续输入、结构化结果、sandbox、相关失败路径、受控取消与最小并发。不会读取认证材料，不改真实项目，不产生外部副作用，也不会开始 Stargazing 3。
 
 ## 2026-09-02：完成 Stargazing 1
 
