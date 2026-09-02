@@ -2,9 +2,9 @@
 
 日期：2026-09-02
 
-状态：暂停，等待用户决定
+状态：已完成
 
-当前结论：未决
+当前结论：有条件可行
 
 性质：Codex CLI 当前版本的能力边界实验，不是正式接入设计、生产实现或技术选型
 
@@ -214,15 +214,19 @@ resume 仍输出同类 model cache 诊断。由于 resume help 没有直接 sand
 
 Skill 注入会占用输入上下文，JSONL 已直接给出“描述因 2% skills context budget 被缩短”的事件；当前 usage 受到额外注入影响，但没有形成可稳定对照的幅度基线。本项不读取内部配置追查来源，也不把单次 usage 外推为稳定成本基线。
 
-### Probe 2.5（部分）：进入 Agent turn 前的确定性失败
+### Probe 2.5：失败、正常受阻与进程级取消
 
 使用一个不存在的全零 UUID 执行 `codex exec resume`。CLI 在约 1 秒后以退出码 `1` 结束，诊断明确说明找不到该 thread id 对应的 rollout；没有产生 `thread.started`、`turn.started`、Agent message 或工具事件。
 
 在一个未初始化 Git 仓库的临时目录运行普通 `codex exec`，且没有使用 `--skip-git-repo-check`。CLI 立即以退出码 `1` 结束，诊断说明当前不在 trusted directory；同样没有进入 thread、turn 或 Agent 工具执行。
 
-这两类调用故障可以在 Agent 工作开始前由非零退出和明确诊断识别。正常 blocked 已由 Probe 2.3 验证为 Agent 语义声明，无需重复。取消探针尚未运行。
+这两类调用故障可以在 Agent 工作开始前由非零退出和明确诊断识别。正常 blocked 已由 Probe 2.3 验证为 Agent 语义声明，无需重复。
 
-## 当前暂停原因
+进程级取消使用新的临时 Git 仓库和独立进程组：Agent 被要求只运行 `sleep 60`，父探针观察到对应 `command_execution` 已开始后发送 SIGTERM。整个进程组在有界时间内消失，没有留下 workspace 文件。
+
+取消后的关键事实是：Codex 进程返回码为 `0`，但 JSONL 既没有 `turn.completed`，也没有 `turn.failed`；只存在 thread / turn 已开始和工具执行已开始的证据。官方非交互文档没有为这一情形提供事务性取消协议。因此 Harness 不能把退出码 `0` 单独视为成功，也不能把进程已消失视为工作失败；本轮必须分类为`结果未知`。据此应按保守边界认为：已经产生的 token 成本、内部 session 记录或潜在外部副作用不能由进程终止自动撤销，除非另有独立证据。
+
+## 实验中途暂停原因
 
 Probe 2.4 意外但明确地证明：`--sandbox read-only` 会阻止临时 workspace 写入，却不会把 Agent 的读取范围限制在 `-C` workspace；Agent 至少能够读取一个当前平台用户可读的 workspace 外本地 Skill 文件，本项没有测定完整可读范围。提示词中的“不要读取外部文件、不要联网”只能形成弱约束。
 
@@ -231,13 +235,64 @@ Probe 2.4 意外但明确地证明：`--sandbox read-only` 会阻止临时 works
 1. 把该限制作为 Codex CLI 接入条件，本项以`有条件可行`暂结，并把取消、真实并发和强读取隔离保留为未决；
 2. 用户明确接受本机 Codex 在后续人工样例中仍可能读取 workspace 外本地文件的风险，再继续取消与最小并发探针；所得结论仍不会宣称存在强读取隔离。
 
+## 用户对暂停项的决定
+
+用户于 `2026-09-02` 明确选择第二种路径：知情接受后续人工样例中的 Codex 仍可能读取 workspace 外本地文件，继续取消与最小并发探针。
+
+该决定授权继续已经成文的受控探针，不改变已发现的产品边界，也不把弱提示约束升级为强读取隔离。实验继续限定为临时 workspace 和人工输入；不会主动测试其他本地文件、网络或真实外部系统。
+
+### Probe 2.6：两个独立角色的最小并发
+
+在两个新建的临时 Git workspace 中近同时启动两个 Codex 进程，每个进程使用自己的 read-only sandbox、人工标记和 session。启动后检查确认两个进程曾同时处于存活状态。
+
+两个角色分别取得唯一且彼此不同的 thread id，各自准确返回自己的人工标记，均产生 `turn.completed`、无 `turn.failed`、退出码为 `0`。两个 workspace 都没有产生非 Git 文件，未观察到结果、thread id 或文件交叉。总墙钟时间约 8.4 秒。
+
+这证明当前机器与版本可以最小并发运行两个独立 Codex 角色，没有在该样例中观察到共享上下文或 workspace 污染。它不是压力测试，不证明更高并发、长任务、公平调度、稳定吞吐、账户限流或生产容量。
+
+## 结论矩阵
+
+| 评估维度 | 观察结论 | Harness 可依赖程度 |
+| --- | --- | --- |
+| 非交互启动 | `codex exec` 无需人工终端操作即可完成任务 | 可依赖，但受安装、认证与服务可用性前提约束 |
+| 机器可读输出 | stdout 提供 JSONL；可取得 thread、turn、item、usage | 可依赖结构形态，不能把任意 `error` item 单独解释为整次失败 |
+| 最终结果 | Agent message 与结构化 schema 结果均可取得 | 是 Agent 语义输出，不是客观质量认证 |
+| session 连续性 | 明确 thread id 可以 resume，并保留文本上下文 | 可作为同一逻辑角色的连续性基础；恢复轮 sandbox 强度未验证 |
+| session 隔离 | 新 session 使用不同 id，最小样例未见语义串线 | 初步可用，不构成内部绝对隔离证明 |
+| workspace 写入 | `workspace-write` 允许写；`read-only` 强制拒绝写 | 可对本轮 workspace 写入形成强制边界 |
+| workspace 读取 | read-only Agent 实际读取了 workspace 外 Skill 文件 | 不能依赖 `-C` 或 read-only 建立强读取隔离 |
+| 正常受阻 | schema 可返回 `work_status=blocked` | 机器可解析，但仍是 Agent 声明 |
+| 调用前故障 | 无效 session 与非 Git 目录均非零退出且不进入 turn | 可确定性识别本轮两类故障 |
+| 进程级取消 | 独立进程组可被终止且无进程/文件残留 | 只能证明本轮本地进程停止；不能撤销成本或外部副作用 |
+| 取消后的终态 | 退出码为 `0`，但没有 `turn.completed` / `turn.failed` | 必须标记结果未知，不能仅凭退出码判断成功 |
+| 最小并发 | 两个独立进程、workspace、thread 同时完成 | 最小可行，不代表生产容量 |
+| 资源观察 | `turn.completed` 提供 token usage | 可做部分统计；环境注入影响成本，没有证明硬预算控制 |
+| 用户环境隔离 | ignore flags 后仍有 Skill 上下文和 model cache 诊断 | 不能假定纯净运行环境；需要适配诊断与公开条件 |
+
+## 成立条件与未覆盖范围
+
+将 Codex CLI 用作 Harness 中的 Agent 角色底层主体，至少需要接受并处理以下条件：
+
+1. Harness 必须联合解析 JSONL 事件、turn 终态、Agent message、stderr 与进程退出事实，不能仅看退出码或任意单个 error item；
+2. 角色连续性应保存并使用明确 thread id，不能依赖 `--last` 这种进程外隐式选择；
+3. 没有明确 `turn.completed` 或 `turn.failed` 的中断调用应进入结果未知，不得自动重试或伪造失败；
+4. read-only 只能作为已验证的 workspace 写入限制。若 thread 需要强读取隔离或敏感资料边界，必须另行验证 OS、容器或其他外层机制；
+5. `--ignore-user-config` 与 `--ignore-rules` 不足以保证无 Skill 上下文、无本地缓存诊断或固定 token 成本；接入层必须容忍非致命诊断，并公开环境影响；
+6. JSON Schema 可以固定 Agent 声明形状，但不能替代发布者判断、评审、验收或其他语义治理；
+7. 两个最小角色并发已跑通，更高并发、长任务、限流和容量需要在具有真实需求时另行验证。
+
+本项没有验证：完整本地可读范围、强制断网、MCP / hook / plugin 的完整隔离、resume 后有效 sandbox、认证续期、服务限流、账户总预算硬限制、大规模并发、跨 Harness 重启恢复、真实外部副作用幂等与生产安全。它们不能因核心路径跑通而被视为可行。
+
 ## 当前结论
 
-`未决`。
+`有条件可行`。
 
-Probe 2.1–2.5（部分）已证明当前坐标下存在无需人工终端操作的非交互成功路径，能取得 thread id、Agent 消息、usage、turn 终态与退出事实，能用明确 id 恢复同一文本上下文，能在临时 workspace 强制允许或拒绝写入，也能在进入 Agent turn 前识别无效 session 与非 Git 目录故障。
+Probe 2.1–2.6 已满足 Stargazing 2 的核心门槛：当前坐标下存在无需人工终端操作的非交互路径，能够发起工作、取得机器可解析事件与结果、保存明确 thread id、向同一上下文发送后续输入，并让两个独立角色最小并发运行。正常受阻与部分调用故障也具有可解析差异。
 
-与此同时，用户环境注入与工作目录外可读范围构成明确接入条件；取消和并发尚未验证。整体结论在用户决定是否继续前保持`未决`。
+它不是无条件可行：read-only 不能提供 workspace 读取隔离；用户环境仍会注入 Skill 相关上下文和诊断；进程级取消可能得到“退出码为 0 但无 turn 终态”的未知结果；usage 只支持部分观察而非已证明的硬预算；最小并发不能外推生产容量。
+
+因此当前建议是把 Codex CLI 保留为 Harness 的可行候选接入对象，并在未来设计中把上述边界作为必须公开和处理的条件，而不是为追求统一接口抹平这些事实。本项结论只适用于记录的日期与最小兼容性坐标；版本或关键环境变化后按 Stargazing 1 的原则局部复验。
+
+Stargazing 2 完成不会自动开始 Stargazing 3。
 
 ## 资料来源
 

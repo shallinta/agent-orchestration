@@ -7,7 +7,7 @@
 | 编号 | 调研事项 | 状态 | 当前结论 |
 | --- | --- | --- | --- |
 | Stargazing 1 | 评估协议与最小兼容性基线 | 已完成 | 可行 |
-| Stargazing 2 | Codex CLI 程序化协作边界 | 暂停待确认 | 未决 |
+| Stargazing 2 | Codex CLI 程序化协作边界 | 已完成 | 有条件可行 |
 | Stargazing 3 | Claude Code CLI 程序化协作边界 | 待开始 | 未决 |
 | Stargazing 4 | 异构 Agent 的共同接入边界 | 待开始 | 未决 |
 | Stargazing 5 | Harness 公共协作能力通道 | 待开始 | 未决 |
@@ -15,6 +15,18 @@
 | Stargazing 7 | 持久化、进程重启与不确定结果 | 待开始 | 未决 |
 | Stargazing 8 | 并发、取消、停用与保证强度 | 待开始 | 未决 |
 | Stargazing 9 | 阶段综合结论 | 待开始 | 未决 |
+
+## 2026-09-02：完成 Stargazing 2
+
+用户知情选择继续后，完成了有界进程取消与两个独立 Codex 角色的最小并发。取消可以终止整个本地进程组且没有文件残留，但进程退出码为 `0`、JSONL 却没有 turn 终态，因此必须分类为结果未知。两个独立 workspace 与 thread 的 Agent 可以同时运行并各自正确完成，但这不是容量或压力结论。
+
+综合 Probe 2.1–2.6，Codex CLI 当前结论为`有条件可行`：非交互启动、JSONL、明确 session resume、结构化结果、workspace 写入控制、部分故障识别和最小并发足以支撑 Agent 角色接入候选；workspace 外可读、环境注入、取消未知、硬预算和生产容量等限制必须保留并公开。
+
+Stargazing 3 尚未开始，由用户决定下一步。
+
+## 2026-09-02：用户知情选择继续 Stargazing 2
+
+用户明确选择继续路径，接受后续人工样例中的 Codex 仍可能读取 workspace 外本地文件。当前恢复 Probe 2.5 的有界取消与 Probe 2.6 的最小并发，但不会据此宣称存在强读取隔离，也不扩大为敏感文件、网络或真实外部系统测试。
 
 ## 2026-09-02：Stargazing 2 暂停，等待读取边界决策
 

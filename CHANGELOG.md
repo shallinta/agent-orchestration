@@ -4,6 +4,16 @@
 
 条目按形成时间倒序排列；同一天内也以最新成文的记录在前。标题没有日期的 Dreaming 条目沿用其实际成文顺序参与排列。
 
+## 2026-09-02：完成 Stargazing 2
+
+在用户知情选择继续后，补完了 Codex CLI 的进程级取消与两个独立角色最小并发。取消能终止本地进程组且不留 workspace 文件，但出现退出码 `0`、JSONL 无 turn 终态的组合，因此结果必须视为未知；两个独立 workspace 与 session 可以同时正确完成，但不能外推生产容量。
+
+综合全部探针，Codex CLI 程序化协作边界结论为`有条件可行`。核心非交互、JSONL、明确 session resume、结构化声明、workspace 写入控制、部分故障识别与最小并发成立；workspace 外读取、Skill 环境注入、取消未知、硬预算、强断网与生产容量均未获得无条件保证。Stargazing 3 不会自动开始。
+
+## 2026-09-02：知情继续 Stargazing 2
+
+用户明确选择继续取消与最小并发探针，知情接受当前 Codex 仍可能读取临时 workspace 外本地文件的边界。该选择只恢复既定人工实验，不改变 read-only 不是强读取隔离的结论，也不授权敏感文件、网络或真实外部系统测试。
+
 ## 2026-09-02：Stargazing 2 因读取边界暂停
 
 Codex CLI 的前几项探针已经跑通非交互 JSONL、指定 session 恢复、结构化结果和临时 workspace 写入控制，也验证了无效 session 与非 Git 目录可以在 Agent turn 前确定性失败。

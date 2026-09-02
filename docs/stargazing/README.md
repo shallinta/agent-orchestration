@@ -8,11 +8,11 @@
 
 - 阶段：`Stargazing`（核心技术可行性探索）
 - 开始日期：2026-09-01
-- 当前状态：Stargazing 1 已完成；Stargazing 2 因发现 workspace 外可读边界而暂停，等待用户决定；Stargazing 3 尚未开始
+- 当前状态：Stargazing 1 已完成；Stargazing 2 已完成，结论为有条件可行；Stargazing 3 尚未开始
 - 总计划：[Stargazing 探索计划](plan.md)
 - 持续记录：[Stargazing 观星日志](logbook.md)
-- 最近完成：[Stargazing 1：评估协议与最小兼容性基线](001-evaluation-protocol-and-minimal-compatibility-baseline.md)
-- 当前探索：[Stargazing 2：Codex CLI 程序化协作边界](002-codex-cli-programmatic-boundary.md)
+- 已完成：[Stargazing 1：评估协议与最小兼容性基线](001-evaluation-protocol-and-minimal-compatibility-baseline.md)
+- 最近完成：[Stargazing 2：Codex CLI 程序化协作边界](002-codex-cli-programmatic-boundary.md)
 
 ## 为什么单独建立这个目录
 
