@@ -4,6 +4,20 @@
 
 条目按形成时间倒序排列；同一天内也以最新成文的记录在前。标题没有日期的 Dreaming 条目沿用其实际成文顺序参与排列。
 
+## 2026-09-02：完成 Stargazing 3
+
+完成 Claude Code CLI `2.1.252` 的程序化协作边界验证，结论为`有条件可行`。当前用户配置下，`claude -p` 可以无需人工终端操作地返回 session、结果、usage 与终止事实；明确 session id 可以逐次 resume；JSON Schema 可以固定 completed / blocked 声明；工具表、权限拒绝、实际磁盘状态、故障终态和最小并发都提供了可供 Harness 解析的证据。
+
+实验同时保留了不能被统一接口掩盖的差异与反例：streaming input 和逐次 resume 都已跑通，但启动上下文变化时曾回落默认模型并认证失败，具体影响来自环境、配置解析位置还是其他条件仍未决；Agent 在没有工具时可能用文本伪造工具成功；SIGTERM 取消后没有 final result；极低 `max-budget-usd` 在一次模型调用已经超过阈值后才报错；safe-mode、restricted 和权限规则也没有被证明等同 OS 或网络隔离。
+
+因此后续共同边界研究必须保留 streaming / resume 双路径、启动上下文前提、多源事实解析、Agent 声明与客观事件分层、取消后结果未知和预算覆盖透明等条件。Stargazing 4 尚未开始，仍由用户决定下一步。
+
+## 2026-09-02：开始 Stargazing 3
+
+用户要求继续验证 Claude Code CLI。单项记录先建立官方声明、本机待验证假设、反证条件、安全探针与判断标准，随后才会读取本机 help 和运行 Agent。
+
+本项把 bare 自动化模式与当前用户认证/模型配置的兼容性作为第一道门槛；若 bare 失败，不会未经审查自动降级到可能加载 hooks、skills、plugins、MCP 和 memory 的普通模式。当前结论为`未决`。
+
 ## 2026-09-02：完成 Stargazing 2
 
 在用户知情选择继续后，补完了 Codex CLI 的进程级取消与两个独立角色最小并发。取消能终止本地进程组且不留 workspace 文件，但出现退出码 `0`、JSONL 无 turn 终态的组合，因此结果必须视为未知；两个独立 workspace 与 session 可以同时正确完成，但不能外推生产容量。

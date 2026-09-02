@@ -8,13 +8,27 @@
 | --- | --- | --- | --- |
 | Stargazing 1 | 评估协议与最小兼容性基线 | 已完成 | 可行 |
 | Stargazing 2 | Codex CLI 程序化协作边界 | 已完成 | 有条件可行 |
-| Stargazing 3 | Claude Code CLI 程序化协作边界 | 待开始 | 未决 |
+| Stargazing 3 | Claude Code CLI 程序化协作边界 | 已完成 | 有条件可行 |
 | Stargazing 4 | 异构 Agent 的共同接入边界 | 待开始 | 未决 |
 | Stargazing 5 | Harness 公共协作能力通道 | 待开始 | 未决 |
 | Stargazing 6 | 最小免人工中转连续闭环 | 待开始 | 未决 |
 | Stargazing 7 | 持久化、进程重启与不确定结果 | 待开始 | 未决 |
 | Stargazing 8 | 并发、取消、停用与保证强度 | 待开始 | 未决 |
 | Stargazing 9 | 阶段综合结论 | 待开始 | 未决 |
+
+## 2026-09-02：完成 Stargazing 3
+
+Claude Code CLI `2.1.252` 在当前 macOS / arm64 与用户 provider、模型和登录配置组合下结论为`有条件可行`。无需人工终端操作的 `-p`、机器可读 result、明确 session id resume、JSON Schema 工作状态、工具允许与权限拒绝、部分故障、进程级取消和两个独立角色最小并发均取得了正反证据。
+
+主要条件同样明确：streaming input 与逐次 resume 两条连续交互路径都已跑通，但必须保留或明确构造已经验证可用的启动上下文；上下文变化时曾出现回落默认模型并认证失败，具体来自环境、配置解析位置还是其他条件仍未决。Agent 文本可能伪造没有发生的工具成功；外部 SIGTERM 不返回结构化取消终态；`max-budget-usd` 在首次模型调用后才发现超限，不能包装成严格硬预算；safe-mode、restricted 与工具规则也不等于完整 OS 或网络隔离。
+
+当前两种目标 CLI 都已形成独立边界结论。下一项按计划是 Stargazing 4：异构 Agent 的共同接入边界，但不会因本项完成自动开始。
+
+## 2026-09-02：开始 Stargazing 3
+
+用户要求继续下一项技术可行性探索，进入 Claude Code CLI 程序化协作边界。已先写明问题、前提、官方声明、假设、反证、安全探针和判断标准；尚未读取本机 help，也没有启动 Claude Code Agent 工作任务。
+
+本项首先验证官方推荐的 bare 自动化模式能否兼容当前用户认证和模型配置。若 bare 失败，不会未经审查自动退回会加载 hooks、skills、plugins、MCP 和 memory 的普通模式。
 
 ## 2026-09-02：完成 Stargazing 2
 
