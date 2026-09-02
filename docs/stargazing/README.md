@@ -8,9 +8,10 @@
 
 - 阶段：`Stargazing`（核心技术可行性探索）
 - 开始日期：2026-09-01
-- 当前状态：总计划已由用户确认；Stargazing 1 尚未开始，未运行具体实验
+- 当前状态：Stargazing 1 已完成；Stargazing 2 与 3 尚未开始
 - 总计划：[Stargazing 探索计划](plan.md)
 - 持续记录：[Stargazing 观星日志](logbook.md)
+- 最近完成：[Stargazing 1：评估协议与最小兼容性基线](001-evaluation-protocol-and-minimal-compatibility-baseline.md)
 
 ## 为什么单独建立这个目录
 
