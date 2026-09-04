@@ -8,13 +8,14 @@
 
 - 阶段：`Stargazing`（核心技术可行性探索）
 - 开始日期：2026-09-01
-- 当前状态：Stargazing 1–6 已完成；Stargazing 7 尚未开始
+- 当前状态：Stargazing 1–7 已完成；Stargazing 8 尚未开始
 - 总计划：[Stargazing 探索计划](plan.md)
 - 持续记录：[Stargazing 观星日志](logbook.md)
 - 已完成：[Stargazing 1：评估协议与最小兼容性基线](001-evaluation-protocol-and-minimal-compatibility-baseline.md)
 - 已完成：[Stargazing 2：Codex CLI 程序化协作边界](002-codex-cli-programmatic-boundary.md)
 - 已完成：[Stargazing 5：Harness 公共协作能力通道](005-harness-public-capability-channel.md)
-- 最近完成：[Stargazing 6：最小免人工中转连续闭环](006-minimal-continuous-collaboration-loop.md)
+- 已完成：[Stargazing 6：最小免人工中转连续闭环](006-minimal-continuous-collaboration-loop.md)
+- 最近完成：[Stargazing 7：持久化、进程重启与不确定结果](007-persistence-restart-and-unknown-outcome.md)
 
 ## 为什么单独建立这个目录
 

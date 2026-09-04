@@ -4,7 +4,7 @@
 
 最后调整：2026-09-04
 
-状态：用户已确认；Stargazing 1–6 已完成；Stargazing 7 尚未开始
+状态：用户已确认；Stargazing 1–7 已完成；Stargazing 8 尚未开始
 
 性质：技术调研计划，不是产品实现计划、版本范围或架构决策
 
@@ -184,6 +184,8 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 **计划产物：** `007-persistence-restart-and-unknown-outcome.md`
 
 **核心门槛：** 至少能恢复已确认的 thread 事实，并对无法确认的 Agent 执行保持诚实；不要求本阶段完成生产级高可用或通用幂等方案。
+
+**完成结论：** `有条件可行`。在确定性假 Adapter、SQLite 已提交事务、顺序单 writer 和受控进程退出条件下，三个独立 Harness 进程证明已确认事实可恢复；已接受但无可靠终态的执行被幂等恢复为`result_unknown`，且没有自动重派或伪造结果。送达未知、真实 Agent/session、在途进程、外部副作用、断电耐久、并发和生产容灾尚未验证，详见单项记录。
 
 ### Stargazing 8：并发、取消、停用与保证强度
 
