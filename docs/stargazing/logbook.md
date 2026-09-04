@@ -9,12 +9,96 @@
 | Stargazing 1 | 评估协议与最小兼容性基线 | 已完成 | 可行 |
 | Stargazing 2 | Codex CLI 程序化协作边界 | 已完成 | 有条件可行 |
 | Stargazing 3 | Claude Code CLI 程序化协作边界 | 已完成 | 有条件可行 |
-| Stargazing 4 | 异构 Agent 的共同接入边界 | 待开始 | 未决 |
-| Stargazing 5 | Harness 公共协作能力通道 | 待开始 | 未决 |
-| Stargazing 6 | 最小免人工中转连续闭环 | 待开始 | 未决 |
+| Stargazing 4 | 异构 Agent 的共同接入边界 | 已完成 | 有条件可行 |
+| Stargazing 5 | Harness 公共协作能力通道 | 已完成 | 有条件可行 |
+| Stargazing 6 | 最小免人工中转连续闭环 | 已完成 | 有条件可行 |
 | Stargazing 7 | 持久化、进程重启与不确定结果 | 待开始 | 未决 |
 | Stargazing 8 | 并发、取消、停用与保证强度 | 待开始 | 未决 |
 | Stargazing 9 | 阶段综合结论 | 待开始 | 未决 |
+
+## 2026-09-04：Stargazing 6 以“有条件可行”完成
+
+Codex CLI `0.144.6`主持与 Claude Code CLI `2.1.260`调查角色完成了一次没有真人逐轮中转的七 turn 连续协作：主持发布委托，调查角色报告，主持两次提出针对性纠错，调查角色两次补充，主持形成最终判断。两个角色 session 独立；一项委托和五条角色消息的发送、查询与 payload digest 均由 Harness request id 和服务端事实核对。独立语义评审确认追问确实针对首次分析薄弱点，后续判断吸收了修订，并与运行前承诺的重复授权事故观察基准没有实质冲突。
+
+真实运行没有一路顺滑。Codex 曾在 read-only 下实际调用 shell 读取临时 workspace 外本地 Skill 文件，探针按安全规则停止；当前官方源码和本机单变量探针表明可用`--disable shell_tool`关闭内置 shell 而保留显式 MCP，正式接受运行据此增加该版本条件。另一次成功模式运行因控制器的单消息结构门槛停止，旧证据无法区分零条或多条；只增加脱敏计数诊断、没有放宽规则后，新的独立运行完整通过。
+
+启动失败路径同样保留正反证据：两次都通过原生`ENOENT`生成一个 Harness 调用故障，没有 Claude session、消息或完成事实；第一次主持却在承认无交付后误称委托已履行，并自行补全事故判断，独立评审判定失败。为故障后的主持恢复补充“不得把调用失败当成果、不得代替委托分析”的责任提示后，第二次主持只报告阻塞和未执行选择，独立评审通过。该提示是弱约束，不是 Harness 可强制保证。
+
+因此核心免人工中转技术路径已经获得真实证据，但结论限定为`有条件可行`：依赖当前 CLI 版本、Codex 关闭 shell、Claude 专用 MCP 配置、角色专属通道、独立 session、顺序执行、人工数据、硬时限和主持提示。重启恢复、结果不确定、自动重试、并发、取消、停用、预算和生产安全仍未验证；Stargazing 7 没有自动开始。
+
+## 2026-09-04：开始 Stargazing 6
+
+用户确认采用一次真实成功闭环加一次执行角色启动失败闭环，并要求持续推进至本项得出结论。Codex 担任主持，Claude Code 担任执行角色；两个角色使用独立 session、独立临时 workspace 与角色专属 Harness MCP 通道。用户是在再次获知 Codex read-only 不构成 workspace 外强读取隔离之后确认启动，本项只处理人工数据，若出现新的非预期读取或外部访问仍立即停止。
+
+成功实验不再使用过于简单的统计题，而是人工构造的支付重复授权事故：18 条证据包含版本灰度、支付方延迟、超时重试、幂等键、回滚、干扰指标和未决对账。主持与执行角色获得完整证据和验收要求，但不主动获得观察者标准因果基准；该基准在 Agent 启动前以 SHA-256 作出承诺，实验后再公开正文核对，避免按 Agent 输出倒推标准答案。
+
+主持必须真实发布委托，并在首次交付后自行识别最薄弱的推断、遗漏或风险，至少提出一次自己决定内容的针对性追问。Harness 控制器只根据委托、消息和调用故障等确定性事实唤起角色，不能理解事故语义或替主持生成追问。
+
+Task 1–5 的可丢弃探针现已完成：人工场景、共享状态、角色专属 MCP、确定性控制器、两种 CLI runner 与一次性临时运行入口均已有测试；入口分别保留脱敏结构摘要与显式仓库外临时评审包。评审包是权限为`0600`的未脱敏原文，可能包含 Agent 自行输出的敏感内容，只能在本机短时评审，不得分享或提交，并在评审后立即安全删除。当前没有启动真实 Codex 或 Claude Agent，因此 Stargazing 6 仍为`进行中 / 未决`；下一步仍是运行前版本与工具表面复核，而不是把 fake 测试当作连续协作结论。
+
+## 2026-09-03：完成 Stargazing 5
+
+Stargazing 5 结论为`有条件可行`。Codex CLI `0.144.6`与 Claude Code CLI `2.1.252`均通过角色专属本地 STDIO MCP server 真实调用三个最小 Harness 公共能力；合法写入、目标不存在、无权限、身份注入和 server 不可用都取得机器事件、结构化结果或启动失败证据，调用结果可通过 Harness request id 与脱敏服务端事实对照。
+
+专用 CLI 与 loopback HTTP 使用公开固定的人工 capability 模拟单角色身份映射，其归因、错误和日志边界通过直接协议测试，但没有验证正式凭据的随机性、保密、短期生命周期、轮换或撤销；因其 Agent 调用只会重复既有 shell 能力证据，本项没有把它们再做成两端 E2E，并明确降级为直接事实加分析推断。结构化返回请求则由两个 Agent 分别完成真实生成，Harness driver 按 execution attempt 固定归因并执行，实际结果随后送回原 session；两端都准确区分“先前生成的请求”和“后来收到的 Harness 结果”。初版 schema 曾被 Codex 以严格对象缺少`additionalProperties:false`拒绝，收缩并修正后才通过。
+
+完整实验测试为`20 tests / 0 failures`。条件和限制包括：两端专用配置及失败语义不同，Claude 当前显式 MCP 必须移除 safe-mode，Codex read-only 不是 workspace 外强读取隔离，且凭据防窃取、恶意同用户隔离、送达、幂等、崩溃中不确定结果、生产并发与远程鉴权仍未证明。Stargazing 6 尚未开始。
+
+## 2026-09-03：两个 Agent 完成本地 MCP 公共能力主验证
+
+Codex CLI `0.144.6`与 Claude Code CLI `2.1.252`都在人工 thread 和隔离临时 workspace 中真实调用了`query_thread`、`send_message`、`publish_delegation`。两端均取得不存在目标、无权限、额外身份字段三类确定性拒绝，以及合法消息和合法委托各一条；工具返回中的 Harness request id 与服务端脱敏 JSONL 逐项一致，最终计数均为一条消息和一条委托。
+
+失败证据同样成立：Codex 把假服务设为 required 后，服务无法启动会在 Agent turn 前失败；Claude 的故障 server 会在 init 中标记为 failed、不给出对应工具，但进程仍可进入没有该能力的 Agent turn。当前 Claude 还必须移除 safe-mode 才能加载显式 MCP，即使 restricted 和严格 MCP 配置仍可保留。因此不能用同一种退出码语义判断两端能力是否已经加载，也不能把移除 safe-mode 说成没有边界变化。
+
+Stargazing 5 仍在进行：下一步以直接协议探针比较专用 CLI 与 loopback HTTP，再验证两个 Agent 的结构化返回请求经 Harness 执行后能否送回同一 session。
+
+## 2026-09-03：用户知情同意继续 Stargazing 5 Agent 实验
+
+用户明确接受本项人工样例中 Codex 仍可能读取临时 workspace 外本地 Skill 文件的既知风险，并要求继续执行 Probe 5.2 及后续已成文验证，直到 Stargazing 5 完成并形成结论。
+
+该授权不改变风险性质，也不把临时 workspace、read-only 或 ignore 配置描述成强读取隔离。后续仍只使用人工数据，不主动读取其他本地文件、不访问真实外部服务；若观察到新的非预期读取、访问或副作用，停止相应探针并记录。
+
+## 2026-09-03：完成 Stargazing 5 的确定性假服务基线
+
+Probe 5.1 已建立可丢弃的最小 Harness 假服务：三个公共能力只操作进程内人工事实，调用者由单角色 server instance 固定绑定，参数不能自报或改写身份；允许、无权限和不存在三类目标均由固定代码判断，每次处理结果与脱敏服务端 JSONL 通过 request id 对照。
+
+测试和独立审查曾发现两类真实问题：外层参数可注入调用者字段，以及 Agent 可控的未知工具名和目标 id 可原样进入所谓脱敏日志。两处都先由失败样例证实，再修复并加入回归。主控侧最终复跑`7 tests / 0 failures`，直接 STDIO smoke 也取得初始化、`ping`、工具列表、thread 查询和对应服务端事实；未启动任何 Agent。
+
+这只证明固定单角色通道内部的确定性校验、归因、写入和审计，不证明多实例角色映射、真实 Agent 工具调用、强隔离、崩溃一致性或安全重试。Stargazing 5 仍为`未决`；下一步仍需用户针对本项明确接受 Codex 可能读取临时 workspace 外本地 Skill 文件的既知边界，才会启动 Probe 5.2。
+
+## 2026-09-03：Stargazing 5 等待 Codex 读取风险的本项选择
+
+Probe 5.0 已重新确认版本、本机 MCP help 与当前官方资料，支持继续建立本地 STDIO 假服务。独立运行前审查批准不启动 Agent 的 Probe 5.1，但指出 Stargazing 2 对 workspace 外读取风险的知情授权只覆盖当时已经成文的后续探针，不能自动延伸到 Stargazing 5。
+
+因此尚未启动 Codex 或 Claude Code 的公共能力 Agent 调用。Probe 5.2 前需要用户明确选择是否接受：Codex 即使使用 ignore flags 和临时 workspace，仍可能读取 workspace 外本地 Skill 文件。本项不会主动读取其他本地文件或访问外部服务，若出现新的非预期读取或访问则停止。
+
+同时把实验权限规则固定为三个目标：有权操作的`allowed-worker`、存在但禁止委托的`forbidden-worker`以及不存在的`missing-worker`，避免为了制造成功和失败样例而临时改变权限。
+
+## 2026-09-03：开始 Stargazing 5
+
+用户明确要求开始验证 Harness 公共协作能力通道。本项先写明问题、前提、官方资料线索、假设、反证条件、安全规则、探针顺序和判断标准；当前尚未启动 Agent 公共能力调用。
+
+主验证候选是为每个 Agent 角色配置专属本地 STDIO MCP server，让 Codex 与 Claude Code 调用人工的`query_thread`、`send_message`和`publish_delegation`工具，并由 server 启动上下文而非工具参数绑定调用角色。随后按证据需要对照专用 CLI、loopback HTTP 和 Agent 结构化返回请求三种路径。
+
+所有权限判断和事实写入都由可丢弃的实验 Harness 固定逻辑完成，Agent 文本只作语义输出。实验不修改真实用户全局 MCP 配置，不接触真实凭证、thread、消息系统或外部业务服务。
+
+## 2026-09-03：完成 Stargazing 4
+
+对照 Codex CLI `0.144.6` 与 Claude Code CLI `2.1.252` 的既有正反实验，并重新确认版本、平台、本机 help 与当前官方资料后，异构 Agent 共同接入边界结论为`有条件可行`。
+
+证据支持用户当前倾向：每种 Agent 都需要不可缺失的产品专属适配责任，分别解释命令、启动上下文、连续输入、原始事件、权限、诊断和取消行为；但这不提前决定每个 Adapter 必须对应完全独立的类、包或进程，也不排除共享基础 driver。
+
+专用 Adapter 之上仍可向 Harness 提供保守的共同事实，包括执行尝试关联、不透明逻辑连续性、可观察开始与终态、Agent 结果、调用故障、送达或结果未知、停止事实、能力条件和带来源的观察量。底层进程、session 和一次执行尝试必须分开；Adapter 接受请求、输入实际送达、进程存活和 Agent 正在执行也不能互相推断。当前没有证明送达确认、自动重试安全、exactly-once 或同 session 多输入并发。
+
+本项没有设计最终接口，也没有把两个本地 CLI 样本外推到所有未来 Agent。下一项按计划是 Stargazing 5：Harness 公共协作能力通道，但不会因本项完成自动开始。
+
+## 2026-09-03：开始 Stargazing 4
+
+用户认为每一种 Agent 应当使用单独、专用的 Adapter，同时同意继续探索异构 Agent 的共同接入边界。本项据此不以“一个通用 Adapter”作为目标，而是检验各专用 Adapter 之上是否存在 Harness 可以依赖的最小共同调用事实。
+
+当前优先比较 Stargazing 2、3 已经验证的 Codex CLI 与 Claude Code CLI：由专用 Adapter 保留命令、session、事件、权限、运行上下文、诊断和取消差异；共同层候选只表达逻辑连续性、执行进展、Agent 结果、调用故障、结果未知、停止事实和能力限制。若抽象会丢失关键差异，本项将收缩共同语义，而不会为表面统一加入产品特例。
+
+本项已先写明用户当前倾向、三种候选方向、假设、反证条件、验证方法和判断标准；尚未开始正式证据复核，也没有设计 Adapter 接口或生产实现。
 
 ## 2026-09-02：完成 Stargazing 3
 

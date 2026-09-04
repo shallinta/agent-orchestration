@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stargazing 5 throwaway structured Harness request",
+  "type": "object",
+  "properties": {
+    "tool": {
+      "type": "string",
+      "enum": ["query_thread"]
+    },
+    "arguments": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": ["tool", "arguments"],
+  "additionalProperties": false
+}
