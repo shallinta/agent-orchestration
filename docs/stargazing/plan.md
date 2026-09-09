@@ -2,9 +2,9 @@
 
 日期：2026-09-01
 
-最后调整：2026-09-04
+最后调整：2026-09-05
 
-状态：用户已确认；Stargazing 1–7 已完成；Stargazing 8 尚未开始
+状态：用户已确认；Stargazing 1–8 已完成；Stargazing 8 以负面证据收束
 
 性质：技术调研计划，不是产品实现计划、版本范围或架构决策
 
@@ -202,6 +202,8 @@ Stargazing 2 与 Stargazing 3 在 Stargazing 1 完成后可以并行推进。
 **计划产物：** `008-concurrency-cancellation-and-guarantees.md`
 
 **核心门槛：** 形成基于实际证据的保证矩阵；不要求所有能力都能被 Harness 强制控制，但不允许把未覆盖能力描述为已经受控。
+
+**完成结论：** `有条件可行`。确定性假执行器证明 Harness-mediated 派发、容量、角色停用、受控进程组停止、结果未知与槽位释放可以保持分离；真实 Codex 反证 CLI 与其 MCP server 必然共享一个父进程组的假设。安全门禁因此停止 Claude Code 的 SG8 实跑。后续专用 Adapter 只有枚举并持有所有受控执行组或外部取消句柄，才能对相应范围给出停止确认；网络、Agent 直接外部副作用和硬预算仍未覆盖。
 
 ### Stargazing 9：阶段综合结论
 
