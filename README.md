@@ -8,6 +8,8 @@
 
 Dreaming 记录作为历史认识依据保留，后续讨论不再延续 Dreaming 编号。Stargazing 记录在 [`docs/stargazing/`](docs/stargazing/README.md)，各项探索使用 `Stargazing 1`、`Stargazing 2`……递增编号；可以使用可丢弃的最小实验取得证据，但不会仅因实验跑通就把候选路径升级为正式架构。只有用户明确提出进入版本规划后，才开始讨论从 `v0.0.1` 起的具体迭代范围。
 
+Stargazing 1–9 单项工作已完成，[Stargazing 9 综合结论](docs/stargazing/009-feasibility-synthesis.md)已通过独立审查，建议有条件进入产品设计，同时保留真实停止/恢复、真人治理、知识维护和实际开发收益等验证门槛；阶段完成及下一阶段仍由用户审阅决定。
+
 ## 产品概览
 
 ### 核心用户旅程

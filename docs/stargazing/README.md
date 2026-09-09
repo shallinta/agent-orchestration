@@ -8,7 +8,7 @@
 
 - 阶段：`Stargazing`（核心技术可行性探索）
 - 开始日期：2026-09-01
-- 当前状态：Stargazing 1–8 已完成；Stargazing 8 以负面证据收束，结论为有条件可行
+- 当前状态：Stargazing 1–9 单项工作已完成，综合结论为有条件可行；阶段完成及后续方向待用户审阅决定
 - 总计划：[Stargazing 探索计划](plan.md)
 - 持续记录：[Stargazing 观星日志](logbook.md)
 - 已完成：[Stargazing 1：评估协议与最小兼容性基线](001-evaluation-protocol-and-minimal-compatibility-baseline.md)
@@ -17,6 +17,7 @@
 - 已完成：[Stargazing 6：最小免人工中转连续闭环](006-minimal-continuous-collaboration-loop.md)
 - 最近完成：[Stargazing 7：持久化、进程重启与不确定结果](007-persistence-restart-and-unknown-outcome.md)
 - 最近完成：[Stargazing 8：并发、取消、停用与保证强度](008-concurrency-cancellation-and-guarantees.md)
+- 最近完成：[Stargazing 9：阶段综合结论](009-feasibility-synthesis.md)
 
 ## 为什么单独建立这个目录
 
